@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 import { ArrowDown, CalendarDays, Camera, Leaf, MapPin, Phone } from "lucide-react";
-import { calendarUrl, events, wedding } from "@/lib/wedding-config";
+import { calendarUrl, celebrationDays, events, saveDate, saveDateShort, wedding } from "@/lib/wedding-config";
 import { cn } from "@/lib/utils";
 import type { MusicState } from "@/hooks/use-music";
 import { usePetals } from "@/hooks/use-petals";
 import { Petals } from "@/components/petals";
 import { Garland, SealWreath } from "@/components/ornaments";
 import florals from "@/assets/wedding-florals.png";
-import ganeshSeal from "@/assets/ganesh-seal.webp"; // ganesh.png trimmed to the figure and compressed for the gate
+import mahaveerSeal from "@/assets/mahaveer-seal.webp"; // the supplied figure, resized and re-encoded for the gate
 
 /* ---------- Opening sequence timings (ms). The door's 2.1s swing itself lives in styles.css ---------- */
 const DOOR_SECS = 2.1;
@@ -155,24 +155,22 @@ export function OpeningLoader({
         <div className="seal-wrap">
           <div>
             <p className="hindi" lang="hi">
-              ॥ श्री गणेशाय नमः ॥
+              ॥ ओम महावीरय नमः ॥
             </p>
             <div className="seal">
               <SealWreath />
               <img
-                src={ganeshSeal}
+                src={mahaveerSeal}
                 className="deity"
-                alt="Lord Ganesha"
-                width={451}
-                height={640}
+                alt="Lord Mahaveer Bhagwan"
+                width={560}
+                height={840}
                 decoding="async"
                 fetchPriority="high"
               />
             </div>
             <p className="shlok" lang="hi">
-              वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।
-              <br />
-              निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
+              अहिंसा परमो धर्म
             </p>
           </div>
         </div>
@@ -266,20 +264,7 @@ export function Hero() {
       <Backdrop src={wedding.photos.hero} wide={wedding.photosWide.hero} label="Couple portrait" />
       <Petals mode="soft" />
       <div className="inner">
-        <p className="story rv">
-          Ghar ka sabse chhota ladka mila
-          <br />
-          ghar ki sabse chhoti ladki se…
-          <mark>
-            aur ab dono ki kahaani
-            <br />
-            ek hone wali hai!
-          </mark>
-        </p>
-        <div className="rule rv d1" aria-hidden="true">
-          <Leaf strokeWidth={1} />
-        </div>
-        <p className="eyebrow rv d2">Scroll to meet them</p>
+        <p className="eyebrow rv">Scroll to meet them</p>
       </div>
     </section>
   );
@@ -295,22 +280,6 @@ export function CoupleSection() {
           <figure className="who">
             <div className="arch">
               <Photo
-                src={wedding.photos.groom}
-                label="Groom's childhood photo"
-                focus={wedding.photoFocus.groom}
-              />
-            </div>
-            <figcaption>
-              <span className="role">The groom</span>
-              <span className="couple-name">{wedding.groom}</span>
-            </figcaption>
-          </figure>
-          <div className="knot" aria-hidden="true">
-            &amp;
-          </div>
-          <figure className="who">
-            <div className="arch">
-              <Photo
                 src={wedding.photos.bride}
                 label="Bride's childhood photo"
                 focus={wedding.photoFocus.bride}
@@ -319,6 +288,22 @@ export function CoupleSection() {
             <figcaption>
               <span className="role">The bride</span>
               <span className="couple-name">{wedding.bride}</span>
+            </figcaption>
+          </figure>
+          <div className="knot" aria-hidden="true">
+            &amp;
+          </div>
+          <figure className="who">
+            <div className="arch">
+              <Photo
+                src={wedding.photos.groom}
+                label="Groom's childhood photo"
+                focus={wedding.photoFocus.groom}
+              />
+            </div>
+            <figcaption>
+              <span className="role">The groom</span>
+              <span className="couple-name">{wedding.groom}</span>
             </figcaption>
           </figure>
         </div>
@@ -374,10 +359,10 @@ export function SaveTheDate() {
       <div className="inner">
         <p className="big rv">
           <small>Save the date</small>
-          <span className="gild">24 November 2026</span>
+          <span className="gild">{saveDate}</span>
         </p>
         <div className="couple rv d1">
-          {wedding.groom} <span className="amp">&amp;</span> {wedding.bride}
+          {wedding.bride} <span className="amp">&amp;</span> {wedding.groom}
         </div>
         <Countdown />
         <p className="line rv d3">Aapke bina yeh sham adhoori hai!</p>
@@ -419,11 +404,9 @@ export function EventTimeline() {
           </h2>
         </div>
         <div className="timeline">
-          {(["2026-11-24", "2026-11-25"] as const).map((day, i) => (
+          {celebrationDays.map(({ day, label }) => (
             <div className="day-group" key={day}>
-              <div className="day rv">
-                {i === 0 ? "Tuesday · 24" : "Wednesday · 25"} November 2026
-              </div>
+              <div className="day rv">{label}</div>
               {events
                 .filter((event) => event.start.startsWith(day))
                 .map((event) => (
@@ -474,7 +457,7 @@ export function Finale() {
           <Leaf strokeWidth={1} />
         </div>
         <p className="line rv d2" style={{ color: "var(--rose-deep)" }}>
-          Aa jaaiye 24 November tak,
+          Aa jaaiye {saveDateShort} tak,
           <br />
           Saharanpur mein milte hain.
         </p>
@@ -517,7 +500,7 @@ export function ContactFooter() {
         </div>
         <p className="foot rv d2">
           <span>
-            {wedding.groom} &amp; {wedding.bride}
+            {wedding.bride} &amp; {wedding.groom}
           </span>
           <span className="dot"> &nbsp;·&nbsp; </span>
           <span>{wedding.dates}</span>

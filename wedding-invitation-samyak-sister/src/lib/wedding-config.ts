@@ -1,8 +1,8 @@
 export const wedding = {
   groom: 'Abhinav',
   bride: 'Akriti',
-  weddingDate: '2026-11-24T08:00:00+05:30',
-  dates: '24 & 25 November 2026',
+  weddingDate: '2026-11-25T08:00:00+05:30',
+  dates: '25 & 26 November 2026',
   city: 'Saharanpur, Uttar\u00A0Pradesh', // non-breaking space keeps "Uttar Pradesh" on one line
   venue: 'Jaykim Banquets (Unit of JKK Orchid)',
   address: 'Saharanpur, Uttar\u00A0Pradesh',
@@ -13,7 +13,7 @@ export const wedding = {
   /** Optional wide (16:9) versions of the backdrops, used from 601px up; empty falls back to the tall photo. */
   photosWide: { hero: '', saveDate: '' },
   /** The melody begins as the gate swings open; the sound button mutes it. */
-  music: { startOnOpen: true },
+  music: { startOnOpen: true, src: '/wedding-tune.mpeg' },
   contacts: [
     { name: 'Vijendra & Deepa Gupta', relationship: "Groom’s family", phone: '+91 82183 62523' },
     { name: 'Rajesh & Madhu Jain', relationship: "Bride’s family", phone: '+91 92510 07277' },
@@ -21,14 +21,29 @@ export const wedding = {
 };
 
 export const events = [
-  { title: 'Carnival Party & Haldi', time: '7:00 AM', start: '2026-11-24T07:00:00+05:30', end: '2026-11-24T09:00:00+05:30', description: 'Rang, masti aur haldi ki pehli khushboo…', photo: '/events/haldi.png', mood: 'haldi' },
-  { title: 'Sangeet', time: '11:00 AM', start: '2026-11-24T11:00:00+05:30', end: '2026-11-24T13:00:00+05:30', description: 'Geet, naach aur dil khol kar jashn…', photo: '/events/sangeet.png', mood: 'sangeet' },
-  { title: 'Baraat', time: '8:00 PM', start: '2026-11-24T20:00:00+05:30', end: '2026-11-24T22:00:00+05:30', description: 'Dhol bajenge, baraat niklegi aur khushiyan chhaayengi…', photo: '/events/baraat.png', mood: 'baraat' },
-  { title: 'Wedding / Phere', time: '8:00 AM', start: '2026-11-25T08:00:00+05:30', end: '2026-11-25T10:00:00+05:30', description: 'Saat phere, saat vaade aur zindagi bhar ka saath…', photo: '/events/phere.png', mood: 'phere' },
-  { title: 'Vidai', time: '11:00 AM', start: '2026-11-25T11:00:00+05:30', end: '2026-11-25T12:00:00+05:30', description: 'Aankhon mein aansu, dil mein duaayein aur ek nayi shuruaat…', photo: '/events/vidai.png', mood: 'vidai' },
+  { title: 'The Haldi-Sangeet Mela', time: '11:00 AM – 3:00 PM', start: '2026-11-25T11:00:00+05:30', end: '2026-11-25T15:00:00+05:30', description: 'Rang, masti, haldi ki pehli khushboo aur phir geet aur naach…', photo: '/Haldi_sangeet.jpeg', mood: 'haldi-sangeet' },
+  { title: 'Baraat', time: '7:00 PM', start: '2026-11-25T19:00:00+05:30', end: '2026-11-25T21:00:00+05:30', description: 'Dhol bajenge, baraat niklegi aur khushiyan chhaayengi…', photo: '/events/baraat.png', mood: 'baraat' },
+  { title: 'Wedding / Phere', time: '8:00 AM', start: '2026-11-26T08:00:00+05:30', end: '2026-11-26T10:00:00+05:30', description: 'Saat phere, saat vaade aur zindagi bhar ka saath…', photo: '/events/phere.png', mood: 'phere' },
+  { title: 'Vidai', time: '11:00 AM', start: '2026-11-26T11:00:00+05:30', end: '2026-11-26T12:00:00+05:30', description: 'Aankhon mein aansu, dil mein duaayein aur ek nayi shuruaat…', photo: '/events/vidai.png', mood: 'vidai' },
 ];
+
+/** Every date on the invitation is written in India time, whatever the guest's device is set to. */
+const format = (date: string, options: Intl.DateTimeFormatOptions) =>
+  new Date(date).toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', ...options });
+
+/** "25 November 2026" — the day guests are asked to save. */
+export const saveDate = format(wedding.weddingDate, { day: 'numeric', month: 'long', year: 'numeric' });
+
+/** "25 November" — the same day without the year, for running text. */
+export const saveDateShort = format(wedding.weddingDate, { day: 'numeric', month: 'long' });
+
+/** The celebration days, derived from the events so moving a date never leaves a stale heading behind. */
+export const celebrationDays = Array.from(new Set(events.map((event) => event.start.slice(0, 10)))).map((day) => ({
+  day,
+  label: format(`${day}T00:00:00+05:30`, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).replace(',', ' ·'),
+}));
 
 export function calendarUrl(event: (typeof events)[number]) {
   const stamp = (date: string) => new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-  return `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: `${event.title} — ${wedding.groom} & ${wedding.bride}`, dates: `${stamp(event.start)}/${stamp(event.end)}`, details: event.description, location: `${wedding.venue}, ${wedding.address}`, ctz: 'Asia/Kolkata' })}`;
+  return `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: `${event.title} — ${wedding.bride} & ${wedding.groom}`, dates: `${stamp(event.start)}/${stamp(event.end)}`, details: event.description, location: `${wedding.venue}, ${wedding.address}`, ctz: 'Asia/Kolkata' })}`;
 }

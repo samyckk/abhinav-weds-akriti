@@ -7,18 +7,18 @@ import { wedding } from "@/lib/wedding-config";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${wedding.groom} & ${wedding.bride} — A Wedding Invitation` },
+      { title: `${wedding.bride} & ${wedding.groom} — A Wedding Invitation` },
       {
         name: "description",
-        content: `With love and the blessings of our families, join us for two days of wedding celebrations on 24 & 25 November 2026 in ${wedding.city}.`,
+        content: `With love and the blessings of our families, join us for two days of wedding celebrations on ${wedding.dates} in ${wedding.city}.`,
       },
       {
         property: "og:title",
-        content: `${wedding.groom} & ${wedding.bride} — A Wedding Invitation`,
+        content: `${wedding.bride} & ${wedding.groom} — A Wedding Invitation`,
       },
       {
         property: "og:description",
-        content: `Two little souls. One beautiful story. Celebrate our new beginning on 24 & 25 November 2026.`,
+        content: `Two little souls. One beautiful story. Celebrate our new beginning on ${wedding.dates}.`,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
  * A tap anywhere on the gate swings the door open, starts the music and fades the gate onto the invitation.
  */
 function Index() {
-  const music = useMusic();
+  const music = useMusic(wedding.music.src);
   const [opened, setOpened] = useState(false);
   const [gateGone, setGateGone] = useState(false);
 
