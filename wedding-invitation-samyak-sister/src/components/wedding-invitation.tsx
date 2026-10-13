@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 import { ArrowDown, CalendarDays, Camera, Leaf, MapPin, Phone } from "lucide-react";
-import { calendarUrl, celebrationDays, events, saveDate, saveDateShort, wedding } from "@/lib/wedding-config";
+import { calendarUrl, celebrationDays, couple, events, saveDate, saveDateShort, wedding } from "@/lib/wedding-config";
 import { cn } from "@/lib/utils";
 import type { MusicState } from "@/hooks/use-music";
 import { usePetals } from "@/hooks/use-petals";
@@ -361,9 +361,7 @@ export function SaveTheDate() {
           <small>Save the date</small>
           <span className="gild">{saveDate}</span>
         </p>
-        <div className="couple rv d1">
-          {wedding.bride} <span className="amp">&amp;</span> {wedding.groom}
-        </div>
+        <div className="couple rv d1">{couple}</div>
         <Countdown />
         <p className="line rv d3">Aapke bina yeh sham adhoori hai!</p>
       </div>
@@ -375,7 +373,7 @@ export function EventCard({ event }: { event: (typeof events)[number] }) {
   return (
     <article className="ev rv">
       <div className="event-cover">
-        <Photo src={event.photo} label={`${event.title} photo`} />
+        <Photo src={event.photo} label={`${event.title} photo`} focus={event.focus} />
         <div className="meta">
           <h3>{event.title}</h3>
           <span className="time">{event.time}</span>
@@ -500,7 +498,7 @@ export function ContactFooter() {
         </div>
         <p className="foot rv d2">
           <span>
-            {wedding.bride} &amp; {wedding.groom}
+            {couple}
           </span>
           <span className="dot"> &nbsp;·&nbsp; </span>
           <span>{wedding.dates}</span>

@@ -342,8 +342,7 @@ img { max-width: 100%; display: block }
    ===================================================================== */
 #date .big { font-family: var(--display); font-weight: 600; font-size: clamp(1.7rem, 7.4vw, 3rem); letter-spacing: .08em; line-height: 1.2; margin: 0 }
 #date .big small { display: block; font-family: var(--sans); font-size: .42em; letter-spacing: .36em; font-weight: 600; color: var(--sage-deep); margin-bottom: .7em; text-transform: uppercase; -webkit-text-fill-color: var(--sage-deep) }
-#date .couple { font-family: var(--script); font-size: clamp(2.6rem, 11vw, 4.2rem); color: var(--rose-deep); line-height: 1.1 }
-#date .couple .amp { color: var(--gold-deep); font-size: .7em; margin: 0 .1em }
+#date .couple { font-family: var(--script); font-size: clamp(2.4rem, 10vw, 3.8rem); color: var(--rose-deep); line-height: 1.1; text-wrap: balance }
 .countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(.5rem, 2.5vw, .9rem); width: min(100%, 460px); margin-top: .4rem }
 .countdown div { display: grid; gap: .25rem; padding: 1rem .2rem .85rem; position: relative; border: 1px solid rgba(201,169,110,.6); border-radius: 18px; background: rgba(255,255,255,.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 20px 40px -30px rgba(60,47,51,.4) }
 .countdown b { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem, 7vw, 2.5rem); line-height: 1; font-variant-numeric: tabular-nums; color: var(--rose-deep) }

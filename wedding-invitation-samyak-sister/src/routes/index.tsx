@@ -2,19 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Invitation, MusicToggle, OpeningLoader } from "@/components/wedding-invitation";
 import { useMusic } from "@/hooks/use-music";
-import { wedding } from "@/lib/wedding-config";
+import { couple, wedding } from "@/lib/wedding-config";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${wedding.bride} & ${wedding.groom} — A Wedding Invitation` },
+      { title: `${couple} — A Wedding Invitation` },
       {
         name: "description",
         content: `With love and the blessings of our families, join us for two days of wedding celebrations on ${wedding.dates} in ${wedding.city}.`,
       },
       {
         property: "og:title",
-        content: `${wedding.bride} & ${wedding.groom} — A Wedding Invitation`,
+        content: `${couple} — A Wedding Invitation`,
       },
       {
         property: "og:description",
