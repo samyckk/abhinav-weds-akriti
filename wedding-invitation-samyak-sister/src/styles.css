@@ -348,12 +348,25 @@ img { max-width: 100%; display: block }
 .countdown b { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem, 7vw, 2.5rem); line-height: 1; font-variant-numeric: tabular-nums; color: var(--rose-deep) }
 .countdown span { font-family: var(--sans); font-weight: 600; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--sage-deep) }
 #date .line { color: var(--rose-deep); margin-top: 1rem }
-#date .backdrop .veil { background: linear-gradient(180deg, rgba(251,247,241,0) 0%, rgba(251,247,241,.4) 40%, rgba(251,247,241,.92) 50%, rgba(251,247,241,.92) 93%, var(--ivory) 100%) }
+#date .backdrop .veil { background: linear-gradient(180deg, rgba(251,247,241,0) 0%, rgba(251,247,241,.28) 42%, rgba(251,247,241,.9) 50%, rgba(251,247,241,.92) 93%, var(--ivory) 100%) }
 #date .backdrop img { object-position: 50% 0% }
 #date .backdrop { inset: 0; transform: none; will-change: auto }
 #date { height: 100vh; height: 100svh; min-height: 0; align-items: end; padding-bottom: calc(6rem + env(safe-area-inset-bottom,0px)) }
 #date .inner { padding-top: 0; padding-bottom: 0 }
 #date .big .gild { background-image: linear-gradient(100deg, #6E5328 0%, #8C6D3B 22%, #C9A96E 50%, #8C6D3B 78%, #6E5328 100%) }
+
+/* =====================================================================
+   WIDE SCREENS — these photos are taller than a landscape viewport, so `cover`
+   would slice them into a band and cut heads off the top. Here they are shown
+   whole: `contain` keeps every face in the clear part of the veil, and a blurred
+   copy of the same frame fills the margins so the backdrop still runs edge to edge.
+   ===================================================================== */
+@media (min-width: 601px) {
+  #date .backdrop::before, #finale .backdrop::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--src) center / cover no-repeat; filter: blur(26px) brightness(.96); transform: scale(1.04) }
+  #date .backdrop img, #finale .backdrop img { object-fit: contain; object-position: 50% 0 }
+  /* the finale's parallax overscan would push the top of a contained frame off screen */
+  #finale .backdrop { inset: 0; transform: none; will-change: auto }
+}
 
 /* =====================================================================
    MEET THE COUPLE
@@ -468,7 +481,7 @@ img { max-width: 100%; display: block }
   .ev .meta .time { background: rgba(255,255,255,.3); backdrop-filter: none; -webkit-backdrop-filter: none }
   #date { padding-bottom: calc(3rem + env(safe-area-inset-bottom,0px)) }
   #date .inner { gap: 1.1rem }
-  #date .backdrop .veil { background: linear-gradient(180deg, rgba(251,247,241,0) 0%, rgba(251,247,241,.35) 38%, rgba(251,247,241,.86) 48%, rgba(251,247,241,.86) 93%, var(--ivory) 100%) }
+  #date .backdrop .veil { background: linear-gradient(180deg, rgba(251,247,241,0) 0%, rgba(251,247,241,.24) 40%, rgba(251,247,241,.86) 48%, rgba(251,247,241,.86) 93%, var(--ivory) 100%) }
   .timeline { padding-left: 26px; gap: 1.4rem; margin-left: -13px; margin-right: 13px }
   .timeline::before { left: 6px }
   .day { white-space: normal; line-height: 1.5 }

@@ -222,7 +222,7 @@ function Photo({
 
 function Backdrop({ src, label, wide = "" }: { src: string; label: string; wide?: string }) {
   return (
-    <div className="backdrop">
+    <div className="backdrop" style={{ "--src": `url("${src}")` } as CSSProperties}>
       <Photo src={src} label={label} wide={wide} />
       <div className="veil" />
     </div>
