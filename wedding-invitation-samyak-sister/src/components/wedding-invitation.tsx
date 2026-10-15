@@ -264,7 +264,9 @@ export function Hero() {
       <Backdrop src={wedding.photos.hero} wide={wedding.photosWide.hero} label="Couple portrait" />
       <Petals mode="soft" />
       <div className="inner">
-        <p className="eyebrow rv">You are cordially invited</p>
+        <p className="line invite rv">
+          You are cordially invited to celebrate the wedding of {wedding.bride} &amp; {wedding.groom}
+        </p>
         <p className="eyebrow rv d1">Scroll to meet them</p>
       </div>
     </section>
