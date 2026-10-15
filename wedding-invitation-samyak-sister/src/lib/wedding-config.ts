@@ -7,7 +7,7 @@ export const wedding = {
   venue: 'Jaykim Banquets (Unit of JKK Orchid)',
   address: 'Saharanpur, Uttar\u00A0Pradesh',
   mapsUrl: 'https://maps.app.goo.gl/5Prty6rrUXZ9UH8u9',
-  photos: { hero: '/couple/first.jpg', groom: '/couple/groom_childhood.png', bride: '/couple/bride_childhood.jpg', saveDate: '/save_the_date.jpeg', venue: '/banquet_hall.jpeg', finale: '/abhinav_didi_south_indian.jpeg' },
+  photos: { hero: '/front_abhinav_didi.jpeg', groom: '/couple/groom_childhood.png', bride: '/couple/bride_childhood.jpg', saveDate: '/baat_pakki.jpeg', venue: '/banquet_hall.jpeg', finale: '/abhinav_didi_south_indian.jpeg' },
   /** Optional crop focus (CSS object-position) for a photo that its frame would otherwise cut badly. */
   photoFocus: { bride: '50% 8%' } as Partial<Record<'hero' | 'groom' | 'bride' | 'saveDate' | 'venue' | 'finale', string>>,
   /** Optional wide (16:9) versions of the backdrops, used from 601px up; empty falls back to the tall photo. */
@@ -34,7 +34,7 @@ export type WeddingEvent = {
 export const events: WeddingEvent[] = [
   { title: 'The Haldi-Sangeet Mela', time: '11:00 AM – 3:00 PM', start: '2026-11-25T11:00:00+05:30', end: '2026-11-25T15:00:00+05:30', description: 'Rang, masti, haldi ki pehli khushboo aur phir geet aur naach…', photo: '/Haldi_sangeet.jpeg' },
   { title: 'Baraat', time: '7:00 PM', start: '2026-11-25T19:00:00+05:30', end: '2026-11-25T21:00:00+05:30', description: 'Dhol bajenge, baraat niklegi aur khushiyan chhaayengi…', photo: '/events/baraat.png', focus: '50% 0%' },
-  { title: 'Wedding / Phere', time: '8:00 AM', start: '2026-11-26T08:00:00+05:30', end: '2026-11-26T10:00:00+05:30', description: 'Saat phere, saat vaade aur zindagi bhar ka saath…', photo: '/abhinav_didi_phere.jpeg', focus: '50% 20%' },
+  { title: 'Wedding / Phere', time: '8:00 AM', start: '2026-11-26T08:00:00+05:30', end: '2026-11-26T10:00:00+05:30', description: 'Saat phere, saat vaade aur zindagi bhar ka saath…', photo: '/abhinav_didi_phere_new.jpeg', focus: '50% 20%' },
   { title: 'Vidai', time: '11:00 AM', start: '2026-11-26T11:00:00+05:30', end: '2026-11-26T12:00:00+05:30', description: 'Aankhon mein aansu, dil mein duaayein aur ek nayi shuruaat…', photo: '/vidhai_new.jpeg' },
 ];
 
