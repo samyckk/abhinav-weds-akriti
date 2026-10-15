@@ -26,17 +26,17 @@ export type WeddingEvent = {
   start: string;
   end: string;
   description: string;
-  photo: string;
-  /** Set only when the event is held somewhere other than the wedding venue. */
+  /** Where this event happens; falls back to the wedding venue when left out. */
   venue?: string;
-  /** Maps link for that other venue; the event card falls back to the wedding venue's own link. */
-  venueUrl?: string;
+  /** Makes the venue line a link; the wedding venue map is used when left out. */
+  mapsUrl?: string;
+  photo: string;
   /** Optional crop focus (CSS object-position) for a card whose frame would otherwise cut the picture badly. */
   focus?: string;
 };
 
 export const events: WeddingEvent[] = [
-  { title: 'The Haldi-Sangeet Mela', time: '11:00 AM – 3:00 PM', start: '2026-11-25T11:00:00+05:30', end: '2026-11-25T15:00:00+05:30', description: 'Rang, masti, haldi ki pehli khushboo aur phir geet aur naach…', photo: '/Haldi_sangeet.jpeg', venue: 'President Hotel', venueUrl: 'https://share.google/CKsOUaHwCCN1r84Ic' },
+  { title: 'The Haldi-Sangeet Mela', time: '11:00 AM – 3:00 PM', start: '2026-11-25T11:00:00+05:30', end: '2026-11-25T15:00:00+05:30', description: 'Rang, masti, haldi ki pehli khushboo aur phir geet aur naach…', venue: 'Hotel President', mapsUrl: 'https://share.google/CKsOUaHwCCN1r84Ic', photo: '/Haldi_sangeet.jpeg' },
   { title: 'Baraat', time: '7:00 PM', start: '2026-11-25T19:00:00+05:30', end: '2026-11-25T21:00:00+05:30', description: 'Dhol bajenge, baraat niklegi aur khushiyan chhaayengi…', photo: '/events/baraat.png', focus: '50% 0%' },
   { title: 'Wedding / Phere', time: '8:00 AM', start: '2026-11-26T08:00:00+05:30', end: '2026-11-26T10:00:00+05:30', description: 'Saat phere, saat vaade aur zindagi bhar ka saath…', photo: '/abhinav_didi_phere_new.jpeg', focus: '50% 20%' },
   { title: 'Vidai', time: '11:00 AM', start: '2026-11-26T11:00:00+05:30', end: '2026-11-26T12:00:00+05:30', description: 'Aankhon mein aansu, dil mein duaayein aur ek nayi shuruaat…', photo: '/vidhai_new.jpeg' },
@@ -63,5 +63,5 @@ export const celebrationDays = Array.from(new Set(events.map((event) => event.st
 
 export function calendarUrl(event: WeddingEvent) {
   const stamp = (date: string) => new Date(date).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-  return `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: `${event.title} — ${couple}`, dates: `${stamp(event.start)}/${stamp(event.end)}`, details: event.description, location: event.venue ?? `${wedding.venue}, ${wedding.address}`, ctz: 'Asia/Kolkata' })}`;
+  return `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: `${event.title} — ${couple}`, dates: `${stamp(event.start)}/${stamp(event.end)}`, details: event.description, location: `${event.venue ?? wedding.venue}, ${wedding.address}`, ctz: 'Asia/Kolkata' })}`;
 }

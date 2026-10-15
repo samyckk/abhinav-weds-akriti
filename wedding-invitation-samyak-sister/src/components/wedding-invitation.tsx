@@ -383,18 +383,21 @@ export function EventCard({ event }: { event: (typeof events)[number] }) {
         </div>
       </div>
       <div className="body">
-        <p>{event.description}</p>
-        {event.venue && (
-          <a
-            className="place"
-            href={event.venueUrl ?? wedding.mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MapPin width={14} height={14} />
-            {event.venue}
-          </a>
-        )}
+        <div className="words">
+          {event.venue &&
+            (event.mapsUrl ? (
+              <a className="venue" href={event.mapsUrl} target="_blank" rel="noopener noreferrer">
+                <MapPin width={14} height={14} />
+                {event.venue}
+              </a>
+            ) : (
+              <p className="venue">
+                <MapPin width={14} height={14} />
+                {event.venue}
+              </p>
+            ))}
+          <p>{event.description}</p>
+        </div>
         <a className="cal" href={calendarUrl(event)} target="_blank" rel="noopener noreferrer">
           <CalendarDays width={13} height={13} />
           Add to calendar
