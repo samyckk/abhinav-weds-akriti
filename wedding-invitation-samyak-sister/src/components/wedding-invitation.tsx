@@ -385,10 +385,15 @@ export function EventCard({ event }: { event: (typeof events)[number] }) {
       <div className="body">
         <p>{event.description}</p>
         {event.venue && (
-          <p className="place">
+          <a
+            className="place"
+            href={event.venueUrl ?? wedding.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <MapPin width={14} height={14} />
             {event.venue}
-          </p>
+          </a>
         )}
         <a className="cal" href={calendarUrl(event)} target="_blank" rel="noopener noreferrer">
           <CalendarDays width={13} height={13} />

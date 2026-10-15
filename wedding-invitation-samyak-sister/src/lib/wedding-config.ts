@@ -29,12 +29,14 @@ export type WeddingEvent = {
   photo: string;
   /** Set only when the event is held somewhere other than the wedding venue. */
   venue?: string;
+  /** Maps link for that other venue; the event card falls back to the wedding venue's own link. */
+  venueUrl?: string;
   /** Optional crop focus (CSS object-position) for a card whose frame would otherwise cut the picture badly. */
   focus?: string;
 };
 
 export const events: WeddingEvent[] = [
-  { title: 'The Haldi-Sangeet Mela', time: '11:00 AM – 3:00 PM', start: '2026-11-25T11:00:00+05:30', end: '2026-11-25T15:00:00+05:30', description: 'Rang, masti, haldi ki pehli khushboo aur phir geet aur naach…', photo: '/Haldi_sangeet.jpeg', venue: 'President Hotel' },
+  { title: 'The Haldi-Sangeet Mela', time: '11:00 AM – 3:00 PM', start: '2026-11-25T11:00:00+05:30', end: '2026-11-25T15:00:00+05:30', description: 'Rang, masti, haldi ki pehli khushboo aur phir geet aur naach…', photo: '/Haldi_sangeet.jpeg', venue: 'President Hotel', venueUrl: 'https://share.google/CKsOUaHwCCN1r84Ic' },
   { title: 'Baraat', time: '7:00 PM', start: '2026-11-25T19:00:00+05:30', end: '2026-11-25T21:00:00+05:30', description: 'Dhol bajenge, baraat niklegi aur khushiyan chhaayengi…', photo: '/events/baraat.png', focus: '50% 0%' },
   { title: 'Wedding / Phere', time: '8:00 AM', start: '2026-11-26T08:00:00+05:30', end: '2026-11-26T10:00:00+05:30', description: 'Saat phere, saat vaade aur zindagi bhar ka saath…', photo: '/abhinav_didi_phere_new.jpeg', focus: '50% 20%' },
   { title: 'Vidai', time: '11:00 AM', start: '2026-11-26T11:00:00+05:30', end: '2026-11-26T12:00:00+05:30', description: 'Aankhon mein aansu, dil mein duaayein aur ek nayi shuruaat…', photo: '/vidhai_new.jpeg' },
