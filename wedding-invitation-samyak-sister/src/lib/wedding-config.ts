@@ -59,6 +59,12 @@ export const siteUrl = vercelHost ? `https://${vercelHost}` : '';
 /** Turns a public asset path into an absolute URL that link unfurlers will accept. */
 export const absoluteUrl = (path: string) => `${siteUrl}${path}`;
 
+/**
+ * Bump this whenever photos.share is replaced. WhatsApp, Facebook and X cache og:image for
+ * weeks, so a versioned query string is what actually forces the new preview to be fetched.
+ */
+export const shareVersion = 2;
+
 /** Every date on the invitation is written in India time, whatever the guest's device is set to. */
 const format = (date: string, options: Intl.DateTimeFormatOptions) =>
   new Date(date).toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata', ...options });
