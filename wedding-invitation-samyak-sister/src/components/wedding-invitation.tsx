@@ -384,24 +384,26 @@ export function EventCard({ event }: { event: (typeof events)[number] }) {
       </div>
       <div className="body">
         <div className="words">
-          {event.venue &&
-            (event.mapsUrl ? (
-              <a className="venue" href={event.mapsUrl} target="_blank" rel="noopener noreferrer">
-                <MapPin width={14} height={14} />
-                {event.venue}
-              </a>
-            ) : (
-              <p className="venue">
-                <MapPin width={14} height={14} />
-                {event.venue}
-              </p>
-            ))}
+          {event.venue && !event.mapsUrl && (
+            <p className="venue">
+              <MapPin width={14} height={14} />
+              {event.venue}
+            </p>
+          )}
           <p>{event.description}</p>
         </div>
-        <a className="cal" href={calendarUrl(event)} target="_blank" rel="noopener noreferrer">
-          <CalendarDays width={13} height={13} />
-          Add to calendar
-        </a>
+        <div className="acts">
+          {event.mapsUrl && (
+            <a className="cal place" href={event.mapsUrl} target="_blank" rel="noopener noreferrer">
+              <MapPin width={13} height={13} />
+              View Location
+            </a>
+          )}
+          <a className="cal" href={calendarUrl(event)} target="_blank" rel="noopener noreferrer">
+            <CalendarDays width={13} height={13} />
+            Add to calendar
+          </a>
+        </div>
       </div>
     </article>
   );
