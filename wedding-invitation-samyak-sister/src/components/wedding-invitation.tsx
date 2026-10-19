@@ -155,7 +155,7 @@ export function OpeningLoader({
         <div className="seal-wrap">
           <div>
             <p className="hindi" lang="hi">
-              ॥ ओम महावीरय नमः ॥
+              ॥ श्री महावीराय नमः ॥
             </p>
             <div className="seal">
               <SealWreath />
@@ -170,7 +170,9 @@ export function OpeningLoader({
               />
             </div>
             <p className="shlok" lang="hi">
-              अहिंसा परमो धर्म
+              मंगलम भगवान वीरो,मंगलम गौतमो गणी ।
+              <br />
+              मंगलम कुन्द्कुंदाद्दौ, जैन धर्मोस्तु मंगलम।।
             </p>
           </div>
         </div>
@@ -399,12 +401,18 @@ export function EventCard({ event }: { event: (typeof events)[number] }) {
       </div>
       <div className="body">
         <div className="words">
-          {event.venue && !event.mapsUrl && (
-            <p className="venue">
-              <MapPin width={14} height={14} />
-              {event.venue}
-            </p>
-          )}
+          {event.venue &&
+            (event.mapsUrl ? (
+              <a className="venue" href={event.mapsUrl} target="_blank" rel="noopener noreferrer">
+                <MapPin width={15} height={15} />
+                {event.venue}
+              </a>
+            ) : (
+              <p className="venue">
+                <MapPin width={15} height={15} />
+                {event.venue}
+              </p>
+            ))}
           <p>{event.description}</p>
         </div>
         <div className="acts">
