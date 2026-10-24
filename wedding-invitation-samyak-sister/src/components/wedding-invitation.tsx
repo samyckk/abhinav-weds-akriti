@@ -521,17 +521,16 @@ export function ContactFooter() {
                 <b>{contact.name}</b>
                 <small>{contact.relationship}</small>
               </div>
-              {contact.phone ? (
-                <a href={`tel:${contact.phone.replace(/[^+\d]/g, "")}`}>
-                  <Phone width={15} height={15} />
-                  {contact.phone}
-                </a>
-              ) : (
-                <span className="contact-unset">
-                  <Phone size={15} />
-                  Phone number to be added
-                </span>
-              )}
+              {contact.phones?.length ? (
+                <div className="phones">
+                  {contact.phones.map((phone) => (
+                    <a key={phone} href={`tel:${phone.replace(/[^+\d]/g, "")}`}>
+                      <Phone width={15} height={15} />
+                      {phone}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
             </div>
           ))}
         </div>

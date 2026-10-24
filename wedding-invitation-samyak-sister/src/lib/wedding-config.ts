@@ -1,3 +1,5 @@
+export type Contact = { name: string; relationship: string; phones?: string[] };
+
 export const wedding = {
   groom: 'Abhinav',
   bride: 'Akriti',
@@ -15,9 +17,9 @@ export const wedding = {
   /** The melody begins as the gate swings open; the sound button mutes it. */
   music: { startOnOpen: true, src: '/wedding-tune.mpeg' },
   contacts: [
-    { name: 'Rajesh & Madhu Jain', relationship: "Bride’s family", phone: '+91 92510 07277' },
-    { name: 'Vijendra & Deepa Gupta', relationship: "Groom’s family", phone: '+91 82183 62523' },
-  ],
+    { name: 'Rajesh & Madhu Jain', relationship: "Bride’s family", phones: ['+91 92510 07277', '+91 81188 57319'] },
+    { name: 'Vijendra & Deepa Gupta', relationship: "Groom’s family" },
+  ] as Contact[],
 };
 
 export type WeddingEvent = {
